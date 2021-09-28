@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "teamcenter.url",
+      "type": "java.lang.String",
+      "description": "Description for teamcenter.url."
+    },
+    {
+      "name": "teamcenter.user",
+      "type": "java.lang.String",
+      "description": "Description for teamcenter.user."
+    },
+    {
+      "name": "teamcenter.pwd",
+      "type": "java.lang.String",
+      "description": "Description for teamcenter.pwd."
+    },
+    {
+      "name": "teamcenter.fmsurl",
+      "type": "java.lang.String",
+      "description": "Description for teamcenter.fmsurl."
+    },
+    {
+      "name": "teamcenter.fcccash",
+      "type": "java.lang.String",
+      "description": "Description for teamcenter.fcccash."
+    }
+  ] }

@@ -25,6 +25,19 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -65,6 +78,214 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>12.2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>fccclient</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>fscclient</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>log4j</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaAdministrationStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaAiStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaAllocationsStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaBomStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaBusinessModelerStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaCadBomAlignmentStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaCadStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaCaeStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaCalendarManagementStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaChangeManagementStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaClassificationStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaClient</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaCommon</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaConfigurationStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaCoreLoose</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaCoreStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaDocumentManagementStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaImportExportStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaQueryStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaStrongModel</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>xml-apis</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaWorkflowLoose</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>teamcenter</groupId>
+            <artifactId>TcSoaWorkflowStrong</artifactId>
+            <version>12.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.9</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -72,6 +293,21 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.pjb.springbootjjwt.SpringbootJjwtApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+
             </plugin>
         </plugins>
     </build>

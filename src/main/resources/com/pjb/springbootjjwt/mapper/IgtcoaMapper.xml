@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pjb.springbootjjwt.mapper.IgtcoaMapper">
+
+    <resultMap  id="processMapper" type="com.pjb.springbootjjwt.entity.IgtcoaProcess">
+        <result property="workflow_id" column="PROCESS_ID"></result>
+        <result property="project_name" column="PROJECT_NAME"></result>
+        <result property="workflow_name" column="PROCESS_NAME"></result>
+        <result property="workcode" column="WORK_NUMBER"></result>
+        <result property="privary" column="PROJECT_ISSECRECY"></result>
+        <result property="created_time" column="CREATION_DATE"></result>
+    </resultMap>
+
+
+    <resultMap  id="fileProcessMapper" type="com.pjb.springbootjjwt.entity.IgtcoaFileProcess">
+        <result property="privary" column="PROJECT_ISSECRECY"></result>
+        <result property="workflow_id" column="PROCESS_ID"></result>
+        <result property="workflow_name" column="PROCESS_NAME"></result>
+        <result property="workflow_type" column="PROCESS_TYPE"></result>
+        <result property="created_time" column="CREATION_DATE"></result>
+        <result property="originator" column="ORIGINATOR"></result>
+        <result property="project_id" column="PROJECT_ID"></result>
+        <result property="project_name" column="PROJECT_NAME"></result>
+        <result property="product_name" column="PRODUCT_NAME"></result>
+        <result property="project_codename" column="PROJECT_CODENAME"></result>
+        <result property="project_type" column="PROJECT_TYPE"></result>
+        <result property="product_type" column="PRODUCT_TYPE"></result>
+        <result property="werks" column="FACTORY"></result>
+        <result property="workcode" column="WORK_NUMBER"></result>
+        <result property="project_level" column="PROJECT_LEVEL"></result>
+        <result property="product_level" column="PRODUCT_LEVEL"></result>
+        <result property="security_level" column="SECURITY_LEVEL"></result>
+    </resultMap>
+
+    <resultMap  id="fileMapper" type="com.pjb.springbootjjwt.entity.IgtcoaFile">
+        <result property="file_id" column="DATASET_UID"></result>
+        <result property="fileName" column="DATASET_NAME"></result>
+        <result property="url" column="DATASET_ADDRESS"></result>
+        <result property="reference" column="REFERENCE"></result>
+    </resultMap>
+
+    <resultMap  id="prInfoMapper" type="com.pjb.springbootjjwt.entity.IgtcoaPrInfo">
+        <result property="pr_id" column="PR_ID"></result>
+        <result property="pr_ver" column="PR_VER"></result>
+        <result property="creator1" column="OWNER"></result>
+        <result property="product_type1" column="PRODUCT_TYPE"></result>
+        <result property="source1" column="SOURCE"></result>
+        <result property="infu_score1" column="INFU_SCORE"></result>
+        <result property="exp_result1" column="EXP_RESULT"></result>
+    </resultMap>
+
+    <resultMap id="qiInfoMapper" type="com.pjb.springbootjjwt.entity.IgtcoaQiInfo">
+        <result property="qi_id" column="QI_ID"></result>
+        <result property="qi_ver" column="QI_VER"></result>
+        <result property="qi_name" column="QI_NAME"></result>
+    </resultMap>
+
+    <resultMap id="qiFileMapper" type="com.pjb.springbootjjwt.entity.IgtcoaQiFile">
+        <result property="qi_file_id" column="DATASET_UID"></result>
+        <result property="qi_file_name" column="DATASET_NAME"></result>
+        <result property="qi_file_url" column="DATASET_ADDRESS"></result>
+    </resultMap>
+
+    <resultMap id="documentsMapper" type="com.pjb.springbootjjwt.entity.IgtcoaDocumentInfo">
+        <result property="document_id" column="DOCUMENT_ID"></result>
+        <result property="document_rev" column="DOCUMENT_REV"></result>
+        <result property="document_type1" column="DOCUMENT_TYPE1"></result>
+        <result property="document_type" column="DOCUMENT_TYPE"></result>
+        <result property="dcc_type" column="DCC_TYPE"></result>
+        <result property="dcc_stage" column="DEPARTMENT"></result>
+        <result property="dcc_upper" column="UPPER_FILE"></result>
+        <result property="ecn_id" column="ECN_ID"></result>
+        <result property="ecn_rev" column="ECN_VER"></result>
+        <result property="ecn_owner" column="NOWNER"></result>
+        <result property="ecr_id" column="ECR_ID"></result>
+        <result property="ecr_ver" column="ECR_VER"></result>
+        <result property="ecr_owner" column="ROWNER"></result>
+    </resultMap>
+    <select id="listAllPrInfos" resultMap="prInfoMapper">
+        SELECT
+            T1.PR_ID,
+            T1.PR_VER,
+            T1.OWNER,
+            T1.PRODUCT_TYPE,
+            T1.SOURCE,
+            T1.INFU_SCORE,
+            T1.EXP_RESULT
+        FROM PR_ATTRIBUTES_TABLE T1
+        LEFT JOIN DOCUMENT_ATTRIBUTES_TABLE T2 ON T1.ECR_ID = T2.DOCUMENT_ID  AND  T1.ECR_VER = T2.DOCUMENT_REV
+        WHERE T2.DOCUMENT_ID = #{DOCUMENT_ID} AND T2.DOCUMENT_REV = #{DOCUMENT_REV}
+    </select>
+    <select id="listAllQiInfos" resultMap="qiInfoMapper">
+        SELECT
+            QI_ID,
+            QI_VER,
+            QI_NAME
+        FROM QUESTION_ATTRIBUTES_TABLE
+        WHERE ECR_ID = #{ECR_ID,jdbcType=VARCHAR} AND ECR_VER = #{ECR_VER,jdbcType=VARCHAR}
+    </select>
+    <select id="listAllQiFiles" resultMap="qiFileMapper">
+        SELECT
+            DATASET_UID,
+            DATASET_NAME,
+            DATASET_ADDRESS
+        FROM
+            DATASET_ATTRIBUTES_TABLE
+        WHERE DOCUMENT_ID = #{QI_ID,jdbcType=VARCHAR} AND DOCUMENT_REV = #{QI_VER,jdbcType=VARCHAR}
+    </select>
+
+    <select id="listDocumentInfos" resultMap="documentsMapper">
+        SELECT
+            T1.DOCUMENT_ID,
+            T1.DOCUMENT_REV,
+            T1.DOCUMENT_TYPE,
+            T1.DOCUMENT_TYPE1,
+            T1.DCC_TYPE,
+            T1.DEPARTMENT,
+            T1.UPPER_FILE,
+            T2.ECN_ID,
+            T2.ECN_VER,
+            T2.OWNER AS NOWNER,
+            T3.ECR_ID,
+            T3.ECR_VER,
+            T3.OWNER AS ROWNER
+        FROM DOCUMENT_ATTRIBUTES_TABLE T1
+            LEFT JOIN ECN_ATTRIBUTES_TABLE T2 ON T1.PROCESS_ID = T2.PROCESS_ID
+            LEFT JOIN ECR_ATTRIBUTES_TABLE T3 ON T1.PROCESS_ID = T3.PROCESS_ID
+        WHERE T1.PROCESS_ID = #{processId}
+    </select>
+
+    <select id="listAllProcess" resultMap="processMapper">
+        SELECT
+            T1.PROCESS_ID,
+            T1.PROCESS_NAME,
+            T1.CREATION_DATE,
+            T11.WORK_NUMBER,
+            T2.PROJECT_NAME,
+            T1.PROJECT_ISSECRECY
+        FROM (SELECT * FROM PROCESS_ATTRIBUTES_TABLE
+        <where>
+            (APPROVE is null or APPROVE !='Y')
+            and PROCESS_ID NOT IN (select PROCESS_ID from WORK_ATTRIBUTES_TABLE
+            where PROJECT_ID NOT IN (select PROJECT_ID from WORK_ATTRIBUTES_TABLE  where WORK_NUMBER = #{workcode}))
+            <if test="werks!=null">
+                and FACTORY = #{werks}
+            </if>
+            <if test="workflow_name!=null">
+                and PROCESS_NAME LIKE concat(concat('%', #{workflow_name}), '%')
+            </if>
+            <if test="start_time!=null">
+                and to_char(CREATION_DATE, 'yyyy-MM-dd') &gt;= #{start_time}
+            </if>
+            <if test="end_time!=null">
+                and to_char(CREATION_DATE, 'yyyy-MM-dd') &lt;= #{end_time}
+            </if>
+            <if test="privary!=null">
+                and PROJECT_ISSECRECY = #{privary}
+            </if>
+            <if test="workflow_type!=null">
+                and PROCESS_TYPE = #{workflow_type}
+            </if>
+        </where>
+        ) T1
+            LEFT JOIN (select * from WORK_ATTRIBUTES_TABLE
+             where PROJECT_ID IN (select PROJECT_ID from WORK_ATTRIBUTES_TABLE  where WORK_NUMBER = #{workcode}))
+         T11 ON T1.PROCESS_ID = T11.PROCESS_ID
+            LEFT JOIN PROJECT_ATTRIBUTES_TABLE T2 ON T1.PROJECT_ID = T2.PROJECT_ID
+<!--        <where>-->
+<!--            T1.APPROVE = 'Y'-->
+<!--            <if test="werks!=null">-->
+<!--                and T1.FACTORY = #{werks}-->
+<!--            </if>-->
+<!--            <if test="workcode!=null">-->
+<!--                and T11.WORK_NUMBER = #{workcode}-->
+<!--            </if>-->
+<!--            <if test="workflow_name!=null">-->
+<!--                &#45;&#45;and T1.PROCESS_NAME = #{title}-->
+<!--                and T1.PROCESS_NAME LIKE CONCAT('%', #{workflow_name} ,'%')-->
+<!--            </if>-->
+<!--            <if test="start_time!=null">-->
+<!--                and to_char(T1.CREATION_DATE, 'yyyy-MM-dd') &gt;= #{start_time}-->
+<!--            </if>-->
+<!--            <if test="end_time!=null">-->
+<!--                and to_char(T1.CREATION_DATE, 'yyyy-MM-dd') &lt;= #{end_time}-->
+<!--            </if>-->
+<!--            <if test="privary!=null">-->
+<!--                and T1.PROJECT_ISSECRECY = #{privary}-->
+<!--            </if>-->
+<!--            <if test="workflow_type!=null">-->
+<!--                and T1.PROCESS_TYPE = #{workflow_type}-->
+<!--            </if>-->
+<!--        </where>-->
+
+    </select>
+
+    <select id="listAllFile" resultMap="fileMapper">
+        SELECT
+            T1.DOCUMENT_ID,
+            T1.DATASET_NAME,
+            T1.DATASET_ADDRESS
+        FROM DATASET_ATTRIBUTES_TABLE T1
+            LEFT JOIN DOCUMENT_ATTRIBUTES_TABLE T2 ON T1.DOCUMENT_ID = T2.DOCUMENT_ID  AND  T1.DOCUMENT_REV = T2.DOCUMENT_REV
+        WHERE T2.PROCESS_ID =#{processId}
+    </select>
+    <select id="listAllFile2" resultMap="fileMapper">
+        SELECT
+            T1.DATASET_UID,
+            T1.DATASET_NAME,
+            T1.DATASET_ADDRESS,
+            T1.REFERENCE
+        FROM DATASET_ATTRIBUTES_TABLE T1
+            LEFT JOIN DOCUMENT_ATTRIBUTES_TABLE T2 ON T1.DOCUMENT_ID = T2.DOCUMENT_ID  AND  T1.DOCUMENT_REV = T2.DOCUMENT_REV
+        WHERE T2.DOCUMENT_ID =#{DOCUMENT_ID} AND T2.DOCUMENT_REV =#{DOCUMENT_REV}
+    </select>
+    <select id="getFileProcess" resultMap="fileProcessMapper">
+            SELECT
+            T1.PROJECT_ISSECRECY,
+            T1.PROCESS_ID,
+            T1.PROCESS_NAME,
+            T1.PROCESS_TYPE,
+            T1.CREATION_DATE,
+            T1.ORIGINATOR,
+            T1.PROJECT_ID,
+            T1.FACTORY,
+            T2.PROJECT_NAME,
+            T2.PRODUCT_NAME,
+            T2.PROJECT_CODENAME,
+            T2.PROJECT_TYPE,
+            T2.PRODUCT_TYPE,
+            T2.PROJECT_LEVEL,
+            T2.PRODUCT_LEVEL,
+            T2.SECURITY_LEVEL,
+            T3.WORK_NUMBER
+            FROM  PROCESS_ATTRIBUTES_TABLE T1
+            LEFT JOIN PROJECT_ATTRIBUTES_TABLE T2 ON  T1.PROJECT_ID = T2.PROJECT_ID
+            LEFT JOIN WORK_ATTRIBUTES_TABLE T3 ON T3.PROJECT_ID = T1.PROJECT_ID  AND T3. PROCESS_ID = T1.PROCESS_ID
+            WHERE T1.PROCESS_ID = #{processId}
+    </select>
+    <select id="getLovInnerValue" resultType="string">
+        select
+               pfnd0entry
+        from PFND0LOVDICTIONARYENTRY a
+            join VL10N_FND0ENTRY b on a.puid=b.puid
+        where b.pval_0 = #{displayValue} and rfnd0lovu = (select puid from PLISTOFVALUES where plov_name = #{lovName}) and b.locale='zh_CN'
+    </select>
+
+    <select id="getLovInnerValue2" resultType="string">
+        select
+               b.pval_0
+        from PFND0LOVDICTIONARYENTRY a
+            join VL10N_FND0ENTRY b on a.puid=b.puid
+        where pfnd0entry = #{displayValue} and rfnd0lovu = (select puid from PLISTOFVALUES where plov_name = #{lovName}) and b.locale='zh_CN'
+    </select>
+
+    <update id="updateProcessApproval">
+        UPDATE DOCUMENT_ATTRIBUTES_TABLE
+        SET OA_RETURN =  #{approval}
+        WHERE PROCESS_ID = #{processId}
+    </update>
+    <insert id="insertFileSigninfo">
+        INSERT INTO TCOA_SIGN_INFO (P_FILE_UID,P_SIGN_NAME,P_SIGN_DATE,P_NO)
+        VALUES (#{fileID},#{signName},#{signDate},#{signNo})
+    </insert>
+    <update id="deleteFileSigninfo">
+        DELETE  TCOA_SIGN_INFO
+        WHERE P_FILE_UID = #{fileID}
+    </update>
+    <update id="updateProcessSignInfo">
+        UPDATE DOCUMENT_ATTRIBUTES_TABLE SET APPROVE_RESULT = #{result} WHERE PROCESS_ID = #{processId} AND DOCUMENT_ID = #{fileId}
+    </update>
+
+    <insert id="insertOAFile">
+        INSERT INTO TCOA_FILE (P_FILE_ID,P_FILE_NAME,P_FILE_PATH)
+        VALUES (#{fileID},#{fileName},#{filePath})
+    </insert>
+
+</mapper>

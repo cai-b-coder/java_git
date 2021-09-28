@@ -2,13 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.pjb.springbootjjwt.mapper.UserMapper">
     <select id="findByUsername" resultType="com.pjb.springbootjjwt.entity.User">
-      SELECT * FROM user
+      SELECT app_secret,username,password FROM tcoauser
       where
       username=#{username}
     </select>
-    <select id="findUserById" resultType="com.pjb.springbootjjwt.entity.User">
-        SELECT * FROM user
+    <select id="findByUsernameAndId" resultType="com.pjb.springbootjjwt.entity.User">
+      SELECT app_secret,username,password FROM tcoauser
       where
-      id=#{Id}
+      username=#{username} and app_secret=#{app_secret}
+    </select>
+
+    <select id="findUserById" resultType="com.pjb.springbootjjwt.entity.User">
+        SELECT app_secret,username,password FROM tcoauser
+      where
+      app_secret=#{app_secret}
     </select>
 </mapper>

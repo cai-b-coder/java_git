@@ -4,12 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
-    String app_secret;
-    String username;
-    String password;
+public class IgtcoaResultProcess {
+    boolean success;
+    String message;
+    List<IgtcoaProcess> result;
 }

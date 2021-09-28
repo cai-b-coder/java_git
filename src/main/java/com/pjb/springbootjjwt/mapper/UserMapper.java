@@ -3,11 +3,10 @@ package com.pjb.springbootjjwt.mapper;
 import com.pjb.springbootjjwt.entity.User;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * @author jinbin
- * @date 2018-07-08 20:44
- */
+
+
 public interface UserMapper {
     User findByUsername(@Param("username") String username);
-    User findUserById(@Param("Id") String Id);
+    User findByUsernameAndId(@Param("username") String username,@Param("app_secret") String Id);
+    User findUserById(@Param("app_secret") String Id);
 }
