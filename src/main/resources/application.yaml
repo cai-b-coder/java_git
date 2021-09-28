@@ -8,7 +8,7 @@ mybatis:
   config-location: classpath:mybatis.xml
 debug: true
 server:
-  port: 9299
+  port: 9292
 teamcenter:
   url: http://10.110.3.47:7010/tc
   user: admin
